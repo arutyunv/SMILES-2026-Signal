@@ -16,6 +16,14 @@ import os
 # Find dataset file
 if os.path.exists("challenge.mat"):
     dataset_path = "challenge.mat"
+elif os.path.exists("challenge_challenge.mat"):
+    dataset_path = "challenge_challenge.mat"
+else:
+    raise FileNotFoundError(
+        "Please place challenge.mat or challenge_challenge.mat in the repository root.")
+
+# Load dataset
+data = loadmat(dataset_path, simplify_cells=True)
 
 else:
     raise FileNotFoundError(
