@@ -9,7 +9,7 @@ from task_and_baseline import baseline, build_task_helpers
 # Download the dataset
 url = "https://drive.google.com/file/d/1BBHVSI4KB-B8OX46eN1Nm4ARCeq6Rui4/view?usp=sharing"
 downloaded_file = "challenge.mat"
-gdown.download(url, downloaded_file, quiet=False)
+gdown.download(url, "challenge.mat", quiet=True, fuzzy=True)
 
 data = loadmat("challenge.mat", simplify_cells=True)
 tx = data["tx"].astype(np.complex128)
