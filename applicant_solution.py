@@ -24,13 +24,6 @@ else:
 
 # Load dataset
 data = loadmat(dataset_path, simplify_cells=True)
-
-else:
-    raise FileNotFoundError(
-        "Please place challenge.mat in the repository root.")
-
-# Load dataset
-data = loadmat(dataset_path, simplify_cells=True)
 tx = data["tx"].astype(np.complex128)
 rx = data["rx"].astype(np.complex128)
 Fs = float(data["Fs"])
