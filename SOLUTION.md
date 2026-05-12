@@ -10,11 +10,11 @@ This solution implements a nonlinear interference cancellation 3-stage pipeline 
 The final solution is based on the idea that the received signal still have residual structured TX-driven interference even after applying the provided baseline cancellation method. I assumed that remaining interference concists of two things. First one is nonlinear hardware effects from all transmitted signals jointly and temporal memory behavior of the physical system. The temporal memory effects refer to the fact that the interference at a given time sample is not determined only by the current transmitted signal, but also by previously transmitted samples [1]. Second interference compoinent comes from external interference term. It is not a function of tx but it is spatially coherent — the same source appears (with different amplitude and phase) across all 4 receive channels.
 
 To address this, the final solver pipeline consists of the flowowing steps:
-Step 1. Baseline linear cancellation
-Step 2. Nonlinear feature engineering
-Step 3. Ridge regression
-Step 4. Interference prediction and subtraction
-Step 5. Final SVD-based spatial cleanup step
+- Step 1. Baseline linear cancellation
+- Step 2. Nonlinear feature engineering
+- Step 3. Ridge regression
+- Step 4. Interference prediction and subtraction
+- Step 5. Final SVD-based spatial cleanup step
 
 Also, on the side, a grid search was conducted over several hyperparameters of the nonlinear cancellation pipeline, including the number of delays, nonlinear polynomial orders, ridge regularization strength, nonlinear subtraction scaling factor, and SVD cleanup scaling coefficient. The final parameter configuration was selected based on the achieved interference suppression while maintaining valid explainability behavior. 
 
