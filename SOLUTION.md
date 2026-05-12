@@ -1,7 +1,7 @@
 # Report: SMILES-2026 Signal Interference Cancellation
 
 ## Abstract 
-This solution implements a nonlinear interference cancellation 3-stage pipeline for eliminating structured interference in multi-channel received signals. By combining baseline cancellation, nonlinear polynomial feature regression and a Singular Value Decomposition (SVD) spatial cleanup stage, the method models both nonlinear hardware distortion and temporal memory effects [1] across all transmit channels jointly. The proposed approach achieved approximately 9.49 dB interference suppression. 
+This solution implements a nonlinear interference cancellation 3-stage pipeline for eliminating structured interference in multi-channel received signals. By combining baseline cancellation, nonlinear polynomial feature regression and a Singular Value Decomposition (SVD) spatial cleanup stage, the method models both nonlinear hardware distortion and temporal memory effects [1] across all transmit channels jointly. The proposed approach achieved 9.49 dB interference suppression. 
 
 ## Reproducibility Instructions
 
