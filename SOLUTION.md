@@ -5,6 +5,33 @@ This solution implements a nonlinear interference cancellation 3-stage pipeline 
 
 ## Reproducibility Instructions
 
+### Environment
+The solution was tested using:
+
+- Python 3.8+
+- numpy
+- scipy
+
+No additional external libraries are required.
+
+### Repository Setup
+Clone the repository and enter the project folder:
+git clone https://github.com/On-Point-RND/SMILES-2026-Signal.git
+cd SMILES-2026-Signal
+
+### Install required packages
+- python -m pip install --upgrade pip
+- python -m pip install numpy scipy
+
+### Dataset
+Before running the solution, place the dataset file (challenge.mat (original name) or challenge_challenge.mat (sometimes changed during downloading) into the repository root directory. Dataset file should be in the same folder as applicant_solution.py
+
+### Running the Solution
+Run python3 applicant_solution.py
+
+### Output 
+After execution, the repository root will contain results.json, where results are stored. 
+
 
 ## Final Solution Description
 The final solution is based on the idea that the received signal still have residual structured TX-driven interference even after applying the provided baseline cancellation method. I assumed that remaining interference concists of two things. First one is nonlinear hardware effects from all transmitted signals jointly and temporal memory behavior of the physical system. The temporal memory effects refer to the fact that the interference at a given time sample is not determined only by the current transmitted signal, but also by previously transmitted samples [1]. Second interference compoinent comes from external interference term. It is not a function of tx but it is spatially coherent — the same source appears (with different amplitude and phase) across all 4 receive channels.
