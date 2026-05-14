@@ -58,10 +58,11 @@ I tested several delay configurations to model temporal memory effects I explein
 Using very few delays limited the model ability to capture longer temporal interference behavior.However, using too many delays increased the size of the nonlinear feature matrix, and therefore increased computation time. The final solution used num_delays = 8, which provided a reasonable balance between performance and complexity. For example, num_delays = 12 decreased inference compression to 9.45dB. 
 
 ### 3. Ordinary Least Squares Without Regularization
-I initially tested ordinary least squares regression without regularization (gave . But, due many nonlinear delayed features are very correlated, the regression became unstable and produced excessively large coefficients. Adding ridge regularization produced more consistent results.
+I initially tested ordinary least squares regression without regularization, which gave 9.49dB. Adding ridge regularization (using cross-validation to choose the tuning parameter 'ridge') produced better result of 9.6dB. 
 
 ### 4. No Singular Value Decomposition (SVD) Step
 I tested versions of the pipeline without the final SVD stage. Even the nonlinear regression removed some amount of TX-dependent interference, there was still a leftover interference structure remaining across receive channels. Adding the rank-1 SVD cleanup step improved the final suppression performance by removing this dominant shared component.
+No SVD Step produced 3.47 dB and with SVD step produced 9.6dB. 
 
 ### 5. Grid Search Instead of Manual Parameter Selection
 One experiment I tried was running a grid search on a specified by me range over the main hyperparameters instead of choosing them manually. I tested different values for the nonlinear subtraction strength 'alpha', the SVD cleanup strength 'svd_alpha', the number of delays, and the ridge regularization value.
