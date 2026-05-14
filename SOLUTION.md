@@ -1,7 +1,7 @@
 # Report: SMILES-2026 Signal Interference Cancellation
 
 ## Abstract 
-This solution implements a nonlinear interference cancellation 3-stage pipeline for eliminating structured interference in multi-channel received signals. By combining baseline cancellation, nonlinear polynomial feature regression and a Singular Value Decomposition (SVD) spatial cleanup stage, the method models both nonlinear hardware distortion and temporal memory effects [1] across all transmit channels jointly. The proposed approach achieved 9.49 dB interference suppression. 
+This solution implements a nonlinear interference cancellation 3-stage pipeline for eliminating structured interference in multi-channel received signals. By combining baseline cancellation, nonlinear polynomial feature regression and a Singular Value Decomposition (SVD) spatial cleanup stage, the method models both nonlinear hardware distortion and temporal memory effects [1] across all transmit channels jointly. The proposed approach achieved 9.6 dB interference suppression. 
 
 ## Reproducibility Instructions
 
@@ -50,15 +50,15 @@ Before arriving at the final solution, I experimented with several different app
 
 ### 1. Different Nonlinear Polynomial Orders
 Several nonlinear polynomial configurations were tested. Initially, I tried using only first-order terms, and first- plus third-order terms.
-Adding third-order nonlinear features improved performance noticeably, but adding adding fourth-order nonlinear feature didn't impove the performance at all. 
+Adding third-order nonlinear features improved performance noticeably, but adding adding fourth-order nonlinear feature ([1, 3, 5, 7]) didn't impove the performance at all, so it stayed at 9.49dB. 
 The final solution used orders = [1, 3, 5]
 
 ### 2. Different Numbers of Delays
 I tested several delay configurations to model temporal memory effects I expleined above.
-Using very few delays limited the model ability to capture longer temporal interference behavior.However, using too many delays increased the size of the nonlinear feature matrix, and therefore increased computation time. The final solution used num_delays = 8, which provided a reasonable balance between performance and complexity.
+Using very few delays limited the model ability to capture longer temporal interference behavior.However, using too many delays increased the size of the nonlinear feature matrix, and therefore increased computation time. The final solution used num_delays = 8, which provided a reasonable balance between performance and complexity. For example, num_delays = 12 decreased inference compression to 9.45dB. 
 
 ### 3. Ordinary Least Squares Without Regularization
-I initially tested ordinary least squares regression without regularization. But, due many nonlinear delayed features are very correlated, the regression became unstable and produced excessively large coefficients. Adding ridge regularization produced more consistent results.
+I initially tested ordinary least squares regression without regularization (gave . But, due many nonlinear delayed features are very correlated, the regression became unstable and produced excessively large coefficients. Adding ridge regularization produced more consistent results.
 
 ### 4. No Singular Value Decomposition (SVD) Step
 I tested versions of the pipeline without the final SVD stage. Even the nonlinear regression removed some amount of TX-dependent interference, there was still a leftover interference structure remaining across receive channels. Adding the rank-1 SVD cleanup step improved the final suppression performance by removing this dominant shared component.
