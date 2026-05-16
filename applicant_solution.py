@@ -111,7 +111,8 @@ def your_canceller(tx_n, rx):
         B += X.conj().T @ Y
 
     # Set regularization value
-    ridge = 1e-2
+    # using cross-validation to choose the tuning parameter 'ridge'
+    ridge = 7
 
     # Solve for W 
     W = np.linalg.solve(A + ridge * np.eye(numb_feat),B)
