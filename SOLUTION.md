@@ -20,8 +20,8 @@ Clone the repository and enter the project folder:
 - cd SMILES-2026-Signal
 
 ### Install required packages
-- python -m pip install --upgrade pip
-- python -m pip install numpy scipy
+- python3 -m pip install --upgrade pip
+- python3 -m pip install numpy scipy
 
 ### Dataset
 Before running the solution, place the dataset file (challenge.mat (original name) or challenge_challenge.mat (sometimes changed during downloading) into the repository root directory. Dataset file should be in the same folder as applicant_solution.py
