@@ -16,7 +16,7 @@ No additional external libraries are required.
 
 ### Repository Setup
 Clone the repository and enter the project folder:
-- git clone https://github.com/On-Point-RND/SMILES-2026-Signal.git
+- git clone https://github.com/arutyunv/SMILES-2026-Signal.git
 - cd SMILES-2026-Signal
 
 ### Install required packages
